@@ -1,3 +1,5 @@
+import { showBg } from "./script2.js";
+
 
 
 export default function fileclone() {
@@ -5,7 +7,13 @@ export default function fileclone() {
     const files = document.getElementById("file_1");
     const parent = document.getElementById("file_cnt");
     const date = document.getElementById('sec_date');
-    const fileName = document.getElementById('file_name');
+    const menuBg = document.getElementById("menu_pan");
+    const menuCard = document.getElementById("menu_card");
+    const searchInp = document.getElementById("search_1");
+    const searchInp2 = document.getElementById("search");
+    const searchInp2Btn = document.getElementById("searc_btn");
+
+    let fileNames = [];
 
     const f = [
         {
@@ -99,10 +107,12 @@ export default function fileclone() {
 
             /**file */
             const file = document.createElement('span');
+            file.setAttribute('class', 'fn');
             file.innerText = _files.name;
             //append
             fileNameSect.appendChild(file);
 
+            fileNames.push(_files.name);
             const fileTimeCnt = document.createElement('span');
             fileTimeCnt.setAttribute('class', 'time-4');
 
@@ -131,7 +141,65 @@ export default function fileclone() {
 
         });
 
-
         parent.appendChild(new_files);
     }
+
+    searchInp.addEventListener("focus", () => {
+        menuBg.style.backgroundColor = "transparent";
+        menuBg.style.pointerEvents = "none";
+        menuCard.style.height = "4.3rem";
+        menuCard.style.marginTop = "1rem";
+    });
+    searchInp.addEventListener("blur", () => {
+
+        menuBg.style.backgroundColor = "";
+        menuCard.style.height = "";
+        menuCard.style.marginTop = "";
+        menuBg.style.pointerEvents = "all";
+
+    });
+
+    function searchfnc(inpt) {
+        Array.from(parent.children).forEach(_child => {
+
+            Array.from(_child.querySelectorAll('.fn')).forEach((_fname, idx) => {
+                if (_fname.innerText.includes(inpt.value)) {
+    
+                    _child.children[idx + 1].style.display = "flex"
+                } else {
+                    _child.children[idx + 1].style.display = "none"
+                }
+            })
+            //if()
+        })
+    }
+
+    searchInp.addEventListener("input", () => {
+        searchfnc(searchInp);
+    });
+
+    /**Comment: The search input for wider screen*/
+    searchInp2.addEventListener("input", () => {
+        searchfnc(searchInp2);
+    });
+
+    
+    let isSearchInp = false;
+    searchInp2Btn.addEventListener("click", () => {
+        if (!isSearchInp) {
+            searchInp2.style.width = "20rem";
+            searchInp2.style.padding = ".5rem";
+            searchInp2.style.pointerEvents = "all"
+
+
+            isSearchInp = true;
+        } else {
+            searchInp2.style.width = "";
+            searchInp2.style.padding = "";
+            searchInp2.style.pointerEvents = ""
+            isSearchInp = false;
+        }
+    });
+
+    
 }

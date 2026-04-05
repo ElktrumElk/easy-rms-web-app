@@ -1,7 +1,7 @@
 
 let isMenu = false;
 
-function showBg(menuBg, menu_card) {
+export function showBg(menuBg, menu_card) {
     if (!isMenu) {
         menuBg.style.display = "flex";
 
@@ -28,7 +28,7 @@ function showBg(menuBg, menu_card) {
 }
 let isBatch = false;
 
-function showBatch(batchList) {
+export function showBatch(batchList) {
     if (!isBatch) {
         batchList.style.display = "flex";
         requestAnimationFrame(() => {
