@@ -1,4 +1,3 @@
-import { Await } from "react-router-dom";
 
 class qRouter {
     /** */
