@@ -1,5 +1,5 @@
-import comp from "../../modules/component/component"
-import Statistics from "./statistics"
+import comp from "/src/modules/component/component.js"
+import Statistics from "./statistics.js"
 
 export default async function Dashboard() {
     return await comp({

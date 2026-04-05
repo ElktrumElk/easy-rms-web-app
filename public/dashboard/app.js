@@ -1,6 +1,6 @@
-import App from "./main";
+import App from "./main.js";
 import render from '../../src/modules/component/render'
-import fileclone from "./scripts/script";
+import fileclone from "./scripts/script.js";
 
 // Wait for DOM to be fully loaded before rendering
 if (document.readyState === 'loading') {
