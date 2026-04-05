@@ -1,5 +1,6 @@
 import App from "./main";
-import render from '../modules/component/render'
+import render from '../../src/modules/component/render'
+import fileclone from "./scripts/script";
 
 // Wait for DOM to be fully loaded before rendering
 if (document.readyState === 'loading') {
@@ -17,3 +18,5 @@ if (document.readyState === 'loading') {
     });
  
 }
+
+fileclone();
