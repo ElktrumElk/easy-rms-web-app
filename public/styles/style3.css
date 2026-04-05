@@ -16,6 +16,7 @@ body {
     flex-direction: column;
     overflow: hidden;
     margin: 0;
+    box-sizing: border-box;
 }
 
 .app {
@@ -28,11 +29,10 @@ body {
 
 .p_cnt-3 {
     display: grid;
-    grid-template-columns: 70px 3fr;
+    grid-template-columns: 70px 1fr;
     grid-template-rows: .3fr 2fr 2fr;
     width: 100%;
     height: 100%;
-    padding-bottom: 0rem;
     gap: .2rem;
 }
 
@@ -54,8 +54,10 @@ body {
 
 .cont-3 {
     width: 100%;
-    border: 1px solid blue;
     grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .side_bar_header-3 {

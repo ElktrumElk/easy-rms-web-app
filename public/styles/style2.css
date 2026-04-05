@@ -179,6 +179,10 @@
     height: 10rem;
 }
 
+.edu_serv_list-2:focus {
+    height: 10rem;
+}
+
 .submit_btn-2 {
     width: 90%;
     align-self: center;
@@ -194,27 +198,31 @@
     align-self: center;
     text-align: center;
 }
+
 .info-2 a {
     text-decoration: none;
     color: blue;
 }
 
 @media (max-width: 780px) {
-.left-2 {
-    display: none;
-}
-.info-2 {
-    grid-column: span 2;
-}
+    .left-2 {
+        display: none;
+    }
+
+    .info-2 {
+        grid-column: span 2;
+    }
 }
 
 @media (max-width: 481px) {
     .log_cnt-2 {
         grid-template-columns: repeat(1, 1fr);
     }
+
     .info-2 {
-        grid-column: span 1;    
+        grid-column: span 1;
     }
+
     .form-2 {
         width: 95%;
     }
