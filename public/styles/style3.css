@@ -34,7 +34,7 @@
 * {
     box-sizing: border-box;
     font-family: sans-serif;
-    transition: background .4s ease, color .4s ease;
+    transition: background .4s ease;
 }
 
 body {

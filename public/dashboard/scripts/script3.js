@@ -10,7 +10,7 @@ function toggleTheme(tg_btn, ic, tgCtr) {
         if (ic) {
             tg_btn.src = "https://img.icons8.com/?size=100&id=648&format=png&color=ffffff";
         } else {
-            tg_btn.style.backgroundColor = "blue";
+            tg_btn.style.backgroundColor = "rgb(2, 61, 82)";
             tgCtr.style.marginInlineStart = "auto";
 
 
