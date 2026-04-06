@@ -4,10 +4,30 @@
     --comp-a-bg-cl: white;
 }
 
+
+
+.dash_board.dark {
+    --bg: rgb(0, 0, 0);
+    --button-bg-cl: rgb(22, 22, 23);
+    --comp-a-bg-cl: rgb(0, 0, 0);
+    color: rgb(208, 205, 205);
+}
+
+.dash_board.dark .side_bar-3 {
+    color: rgb(208, 205, 205);
+}
+
+.dash_board.dark li {
+    color: white;
+}
+.dash_board.dark .active {
+    background-color: #0e0d0dd3;
+}
+
 * {
     box-sizing: border-box;
     font-family: sans-serif;
-
+    transition: background .4s ease, color .4s ease;
 }
 
 body {
@@ -62,9 +82,9 @@ body {
 
 /*The side batch buttons*/
 
-.side_bar-3.expand .gen_list-3 .g_list-3{
+.side_bar-3.expand .gen_list-3 .g_list-3 {
     width: 80%;
-} 
+}
 
 
 .cont-3 {
@@ -102,7 +122,7 @@ body {
 
 .create_bnt_sec-3 {
     width: 100%;
-    display: flex;
+    display: none;
     flex-direction: column;
     place-items: center;
     place-content: center;
@@ -159,7 +179,8 @@ body {
     margin-inline-start: 3rem;
 }
 
-.opt-3:has(.heading.visible), .opt-3 {
+.opt-3:has(.heading.visible),
+.opt-3 {
     gap: 1rem;
 }
 
@@ -184,6 +205,7 @@ body {
     gap: 1rem;
 
 }
+
 .batch_list_lrg-3 {
     width: 100%;
     max-height: 20rem;
@@ -191,6 +213,7 @@ body {
 
 
 }
+
 .batch_list_lrg-3 ul {
     display: flex;
     flex-direction: column;
@@ -204,8 +227,9 @@ body {
     display: flex;
     padding: 1rem 1rem;
     border-radius: .2rem;
-   
+
 }
+
 .batch_list_lrg-3 ul li.active {
     background-color: rgba(128, 128, 128, 0.361);
 }
@@ -217,6 +241,7 @@ body {
     width: 90%;
     color: black;
 }
+
 /*================================================*/
 
 .g_list-3 span {
@@ -452,6 +477,7 @@ body {
     .menu_pan_bg {
         display: none;
     }
+
     .p_cnt-3.side_expand {
         grid-template-columns: 1fr;
     }

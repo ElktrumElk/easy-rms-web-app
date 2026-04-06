@@ -64,16 +64,19 @@
     flex-direction: column;
     gap: .5rem;
     margin-block-start: 2rem;
-    
+
 }
 
 .file_cnt-4 .file_sub_cnt-4 {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1rem;
-    
+    background-color: rgb(202, 199, 199);
+    width: 90%;
+    border-radius: 2rem;
+
+
 
 }
 
@@ -84,10 +87,17 @@
     cursor: pointer;
 }
 
+.dash_board.dark .file_sub_cnt-4 {
+    background-color: rgb(38, 45, 58);
+    width: 90%;
+    border-radius: 2rem;
+}
+
 .file_type_ic-4 {
     width: 20px;
     height: 20px;
 }
+
 .time-4 {
     display: flex;
     align-items: center;
@@ -104,6 +114,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .sec_date-4 {
     color: rgb(99, 98, 98);
 }
@@ -125,12 +136,14 @@
 }
 
 @media (max-width: 920px) {
-    .download_btn-4 { 
+    .download_btn-4 {
         display: none;
     }
-    .filter-4  span {
+
+    .filter-4 span {
         display: none;
     }
+
     .filter-4 {
         width: fit-content;
     }
