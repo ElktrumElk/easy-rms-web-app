@@ -1,5 +1,5 @@
 import App from "./main.js";
-import render from '/src/modules/component/render.js'
+import render from '/modules/component/render.js'
 import fileclone from "./scripts/script.js";
 import Script2 from './scripts/script2.js';
 import interSect from "./scripts/script3.js";
