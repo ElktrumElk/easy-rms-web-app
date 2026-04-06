@@ -21,6 +21,7 @@ if (document.readyState === 'loading') {
  
 }
 
-fileclone();
+/*fileclone();
 Script2();
 interSect();
+*/

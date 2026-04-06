@@ -1,4 +1,4 @@
-import { crossEvent } from "../../modules/quick_router/qRouter.js";
+import { crossEvent } from "/modules/quick_router/qRouter.js";
 
 let isDark = false;
 let scrollEventAttached = false; // Track if scroll event is already attached
