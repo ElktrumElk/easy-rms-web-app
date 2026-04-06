@@ -2,12 +2,18 @@ let isDark = false;
 
 
 /**Toggle btn */
-function toggleTheme(tg_btn, ic) {
+function toggleTheme(tg_btn, ic, tgCtr) {
     if (!isDark) {
         document.body.classList.add("dark");
+
         isDark = true;
         if (ic) {
             tg_btn.src = "https://img.icons8.com/?size=100&id=648&format=png&color=ffffff";
+        } else {
+            tg_btn.style.backgroundColor = "blue";
+            tgCtr.style.marginInlineStart = "auto";
+
+
         }
 
     } else {
@@ -15,8 +21,12 @@ function toggleTheme(tg_btn, ic) {
         isDark = false;
         if (ic) {
             tg_btn.src = "https://img.icons8.com/?size=100&id=45474&format=png&color=7a7a7a";
+        } else {
+            tg_btn.style.backgroundColor = "";
+            tgCtr.style.marginInlineStart = "";
         }
     }
+
 }
 
 
@@ -50,13 +60,14 @@ export default function interSect() {
 
     const tg_btn = document.getElementById('theme_tg_btn');
     const tg_btn_mobile = document.getElementById('tg_btn_mobile')
-
+    const tgCtr = document.getElementById('tg_ctr');
 
     tg_btn.addEventListener("click", () => {
-        toggleTheme(tg_btn, true);
+        toggleTheme(tg_btn, true, null);
     });
 
     tg_btn_mobile.addEventListener("click", () => {
-        toggleTheme(tg_btn_mobile, false)
-    })
+        toggleTheme(tg_btn_mobile, false, tgCtr)
+
+    });
 }
