@@ -7,6 +7,7 @@
     max-width: 2200px;
     padding: 1rem 1rem;
     gap: 1rem;
+    overflow-y: auto;
 }
 
 .top_bar-5 {
@@ -125,6 +126,7 @@
     display: flex;
     width: 100%;
     min-height: 20rem;
+    margin-block-end: 11rem;
 }
 
 .stat_cnt-5 {
@@ -136,7 +138,7 @@
     padding: 0rem;
     gap: 2rem;
     position: relative;
-    min-height: 25rem;
+    min-height: 30rem;
 }
 
 .top_stat_cnt-5 {
@@ -185,7 +187,7 @@
     margin: 0;
     height: 100%;
     display: grid;
-    grid-template-rows: repeat(6, minmax(10px, 34px));
+    grid-template-rows: repeat(6, minmax(10px, 55px));
 }
 
 .lst_val-5 li {
@@ -206,22 +208,23 @@
 .bar_sec_cnt-5 {
     position: absolute;
     width: 90%;                 
-    height: 80%; 
+    height: 70%;
     pointer-events: none;        
     z-index: 2;
-    bottom: 10%; 
+    bottom: 9%; 
     right: 0;
     display: flex;
     gap: 2rem;
     justify-content: space-evenly;
     overflow: auto; 
+    
    
 }
 
 /* Example bars inside .bar_sec_cnt-5 (you'll add these dynamically or manually) */
 .bar {
    
-    width: 35px;
+    width: 60px;
     align-self: flex-end;
     background: linear-gradient(to top, #3b82f6, #60a5fa);
     border-radius: 6px 6px 0 0;
@@ -241,9 +244,20 @@
    
 }
 
+.recent_file_section-5 {
+    width: 100%;
+   
+    display: flex;
+   
+}
 
-/* Optional: different colors */
-.bar:nth-child(1) {   background: #3b82f6; }
-.bar:nth-child(2) {  background: #10b981; }
-.bar:nth-child(3) {  background: #f59e0b; }
-.bar:nth-child(4) {  background: #ef4444; }
+.recent_file_cnt-5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: .4rem;
+    width: 100%;
+    min-height: 20rem;
+
+}
