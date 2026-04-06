@@ -1,4 +1,11 @@
+import { crossEvent } from "../../modules/quick_router/qRouter.js";
+
 let isDark = false;
+let scrollEventAttached = false; // Track if scroll event is already attached
+
+export function resetScrollEventFlag() {
+    scrollEventAttached = false;
+}
 
 
 /**Toggle btn */
@@ -38,23 +45,22 @@ function toggleTheme(tg_btn, ic, tgCtr, ham_btn = null) {
 
 }
 
+export function setupScrollEvents() {
+    if (scrollEventAttached) return; // Prevent duplicate event listeners
 
-export default function interSect() {
     const curTime = document.getElementById("currentSecTime");
     const rootCnt = document.getElementById("time_root_cnt");
     const scrollCnt = document.getElementById("dash_cmp");
-    const secDates = document.querySelectorAll(".sec_date-4");
-    const hambugerBtn = document.getElementById("hambuger_menu");
-    const rect = rootCnt.getBoundingClientRect().bottom;
 
+    if (!scrollCnt) return; // Exit if scroll container doesn't exist
 
-
-    scrollCnt.addEventListener("scroll", (e) => {
+    crossEvent("scroll", 'dash_cmp', () => {
+        // Query secDates dynamically on every scroll to get fresh DOM elements
+        const secDates = document.querySelectorAll(".sec_date-4");
+        const rect = rootCnt.getBoundingClientRect().bottom;
 
         secDates.forEach(sec => {
-
             const secDateRect = sec.getBoundingClientRect().top;
-
             if (secDateRect < rect) {
                 curTime.innerText = sec.innerText;
                 rootCnt.style.boxShadow = "0px 2px 1rem gray"
@@ -65,7 +71,11 @@ export default function interSect() {
         };
     })
 
+    scrollEventAttached = true;
+}
 
+export default function interSect() {
+    setupScrollEvents();
 
     const tg_btn = document.getElementById('theme_tg_btn');
     const tg_btn_mobile = document.getElementById('tg_btn_mobile')

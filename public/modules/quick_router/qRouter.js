@@ -121,16 +121,28 @@ class qRouter {
 export default qRouter;
 
 export function crossEvent(event, id, cb) {
-    document.addEventListener(event, (e) => {
+    const targetElement = document.getElementById(id);
 
-        const elem = e.target.closest(`#${id}`)
-        if (elem) {
-            cb && cb(e)
-        } else {
-            return "Error"
-        }
-    })
+    if (!targetElement) {
+        console.error(`Element with id '${id}' not found for crossEvent`);
+        return;
+    }
 
+    // For scroll events, add listener directly to the element for better performance
+    if (event === 'scroll') {
+        targetElement.addEventListener(event, (e) => {
+            cb && cb(e);
+        });
+    } else {
+        // For other events, use document delegation
+        document.addEventListener(event, (e) => {
+            // Check if the event target is the element itself or within it
+            const elem = e.target.closest(`#${id}`) || (e.target.id === id ? e.target : null);
+            if (elem) {
+                cb && cb(e);
+            }
+        });
+    }
 }
 
 /**

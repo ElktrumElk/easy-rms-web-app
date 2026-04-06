@@ -1,6 +1,20 @@
+//------------------day 3
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
 
 import { showBg } from "./script2.js";
-
+import updateState from "/modules/update_state/updateState.js";
+import interSect, { setupScrollEvents, resetScrollEventFlag } from "./script3.js";
 /**
  * Renders file components sorted by date
  * @param {Array} filesData - Array of file groups with dates
@@ -23,7 +37,7 @@ function renderFilesComponent(filesData, parentContainer, sortDirection = 'ascen
         dateElement.innerText = `${dateGroup.date} ${dateGroup.year}`;
         groupElement.appendChild(dateElement);
 
-        dateGroup.files.forEach((file, idx) => {
+        dateGroup.files.forEach((file) => {
             const fileCnt = document.createElement('div');
             fileCnt.setAttribute('class', 'file_sub_cnt-4');
 
@@ -37,8 +51,7 @@ function renderFilesComponent(filesData, parentContainer, sortDirection = 'ascen
 
             const fileName = document.createElement('span');
             fileName.setAttribute('class', 'fn');
-            
-            fileName.innerText = isAscending ? file.name : dateGroup.files[(dateGroup.files.length - 1) - idx].name;
+            fileName.innerText = file.name;
             fileNameSect.appendChild(fileName);
 
             fileCnt.appendChild(fileNameSect);
@@ -47,7 +60,7 @@ function renderFilesComponent(filesData, parentContainer, sortDirection = 'ascen
             fileTimeCnt.setAttribute('class', 'time-4');
 
             const fileTime = document.createElement('span');
-            fileTime.innerText = isAscending ? file.time : dateGroup.files[(dateGroup.files.length - 1) - idx].time;
+            fileTime.innerText = file.time;
             fileTimeCnt.appendChild(fileTime);
 
             const downloadBtn = document.createElement('button');
@@ -146,21 +159,32 @@ export default function fileclone() {
         }
     ]
 
-    let sortDirection = 'ascending';
+    // Create state manager for sort direction
+    const sortState = updateState('ascending');
+
+    // Subscribe to sort state changes to re-attach scroll events after DOM updates
+    sortState.subscribe((newDirection) => {
+        // Reset flag to allow scroll event re-attachment after sorting
+        resetScrollEventFlag();
+        // Re-attach scroll events after DOM has been re-rendered
+        setTimeout(() => {
+            setupScrollEvents();
+        }, 0);
+    });
 
     sortBtn.addEventListener('click', () => {
-        // Toggle sort direction
-        sortDirection = sortDirection === 'ascending' ? 'descending' : 'ascending';
+        // Update state (this will trigger the subscription)
+        sortState.value = sortState.value === 'ascending' ? 'descending' : 'ascending';
 
         // Clear existing files
         parent.innerHTML = '';
 
         // Re-render with new sort direction
-        renderFilesComponent(f, parent, sortDirection);
+        renderFilesComponent(f, parent, sortState.value);
     });
 
     // Initial render
-    renderFilesComponent(f, parent, sortDirection);
+    renderFilesComponent(f, parent, sortState.value);
 
 
     /**When the mobile search input is focused */
