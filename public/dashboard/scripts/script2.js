@@ -9,6 +9,7 @@ export function showBg(menuBg, menu_card) {
             menu_card.style.maxHeight = "900px";
             menu_card.style.padding = "1rem 1rem";
             menu_card.style.overflow = "hidden";
+           
         });
         isMenu = true;
 
@@ -17,7 +18,6 @@ export function showBg(menuBg, menu_card) {
             menu_card.style.maxHeight = "0";
             menu_card.style.padding = "0rem 0rem";
             menu_card.style.overflow = "hidden";
-
         });
 
         setTimeout(() => {
@@ -58,7 +58,8 @@ export default async function Script2() {
     const batchBtn = document.getElementById("batch_btn");
     const batchList = document.getElementById("btch_list");
 
-    hambugerBtn.addEventListener("click", () => { showBg(menuBg, menuCard) });
+    /**comment: Display The menue panel */
+    hambugerBtn.addEventListener("click", () => { showBg(menuBg, menuCard, hambugerBtn) });
     menuBg.addEventListener("click", (e) => {
         if (e.target !== menuBg) return;
         showBg(menuBg, menuCard)
@@ -79,7 +80,7 @@ export default async function Script2() {
         if (!issideExpand) {
 
             batchBtnlrg.style.flexDirection = "row";
-            
+
             /**Add class */
             _dashboard.classList.add("side_expand"); //dashboard
             headings.classList.add("visible");

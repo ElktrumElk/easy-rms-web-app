@@ -1,6 +1,79 @@
+
 import { showBg } from "./script2.js";
 
+/**
+ * Renders file components sorted by date
+ * @param {Array} filesData - Array of file groups with dates
+ * @param {HTMLElement} parentContainer - Container to append files to
+ * @param {string} sortDirection - 'ascending' or 'descending'
+ * @param {Function} onElementCreate - Optional callback when each group is created
+ */
+function renderFilesComponent(filesData, parentContainer, sortDirection = 'ascending', onElementCreate = null) {
+    const startIdx = sortDirection === 'ascending' ? 0 : filesData.length - 1;
+    const isAscending = sortDirection === 'ascending';
 
+    for (let i = startIdx; isAscending ? i < filesData.length : i >= 0; isAscending ? i++ : i--) {
+        
+        const dateGroup = filesData[i];
+        const groupElement = document.createElement('div');
+        groupElement.setAttribute('class', 'group_time-4');
+
+        const dateElement = document.createElement('span');
+        dateElement.setAttribute('class', 'sec_date-4');
+        dateElement.innerText = `${dateGroup.date} ${dateGroup.year}`;
+        groupElement.appendChild(dateElement);
+
+        dateGroup.files.forEach((file, idx) => {
+            const fileCnt = document.createElement('div');
+            fileCnt.setAttribute('class', 'file_sub_cnt-4');
+
+            const fileNameSect = document.createElement('div');
+            fileNameSect.setAttribute('class', 'file_name-4');
+
+            const fileIcon = document.createElement('img');
+            fileIcon.setAttribute('class', 'file_type_ic-4');
+            fileIcon.setAttribute('src', 'https://img.icons8.com/?size=100&id=117561&format=png&color=000000');
+            fileNameSect.appendChild(fileIcon);
+
+            const fileName = document.createElement('span');
+            fileName.setAttribute('class', 'fn');
+            
+            fileName.innerText = isAscending ? file.name : dateGroup.files[(dateGroup.files.length - 1) - idx].name;
+            fileNameSect.appendChild(fileName);
+
+            fileCnt.appendChild(fileNameSect);
+
+            const fileTimeCnt = document.createElement('span');
+            fileTimeCnt.setAttribute('class', 'time-4');
+
+            const fileTime = document.createElement('span');
+            fileTime.innerText = isAscending ? file.time : dateGroup.files[(dateGroup.files.length - 1) - idx].time;
+            fileTimeCnt.appendChild(fileTime);
+
+            const downloadBtn = document.createElement('button');
+            downloadBtn.setAttribute('class', 'download_btn-4');
+
+            const downloadIc = document.createElement('img');
+            downloadIc.setAttribute('class', 'download_ic');
+            downloadIc.setAttribute('src', 'https://img.icons8.com/?size=100&id=83159&format=png&color=FFFFFF');
+            downloadBtn.appendChild(downloadIc);
+
+            const downloadText = document.createElement('span');
+            downloadText.innerText = 'Download';
+            downloadBtn.appendChild(downloadText);
+
+            fileTimeCnt.appendChild(downloadBtn);
+            fileCnt.appendChild(fileTimeCnt);
+            groupElement.appendChild(fileCnt);
+        });
+
+        parentContainer.appendChild(groupElement);
+
+        if (typeof onElementCreate === 'function') {
+            onElementCreate(groupElement);
+        }
+    }
+}
 
 export default function fileclone() {
 
@@ -12,6 +85,7 @@ export default function fileclone() {
     const searchInp = document.getElementById("search_1");
     const searchInp2 = document.getElementById("search");
     const searchInp2Btn = document.getElementById("searc_btn");
+    const sortBtn = document.getElementById('sort_btn');
 
     let fileNames = [];
 
@@ -72,84 +146,32 @@ export default function fileclone() {
         }
     ]
 
-    for (let i = 0; i < f.length; i++) {
-        const new_files = document.createElement('div');
-        new_files.setAttribute('class', 'group_time-4');
+    let sortDirection = 'ascending';
 
-        const dateElement = document.createElement('span');
-        dateElement.setAttribute('class', 'sec_date-4');
+    sortBtn.addEventListener('click', () => {
+        // Toggle sort direction
+        sortDirection = sortDirection === 'ascending' ? 'descending' : 'ascending';
 
-        dateElement.innerText = f[i].date + ' ' + f[i].year;
-        //append
-        new_files.appendChild(dateElement);
+        // Clear existing files
+        parent.innerHTML = '';
 
+        // Re-render with new sort direction
+        renderFilesComponent(f, parent, sortDirection);
+    });
 
-
-
-        /**File type icon */
-        f[i].files.forEach(_files => {
-
-            /**comment: Holds the files in section in each date group */
-            const fileCnt = document.createElement('div');
-            fileCnt.setAttribute('class', 'file_sub_cnt-4');
-
-            /**File name section */
-            const fileNameSect = document.createElement('div');
-            fileNameSect.setAttribute('class', 'file_name-4');
-            //append
-            fileCnt.appendChild(fileNameSect);
-
-            const fileIcon = document.createElement('img');
-            fileIcon.setAttribute('class', 'file_type_ic-4');
-            fileIcon.setAttribute('src', 'https://img.icons8.com/?size=100&id=117561&format=png&color=000000');
-            //append
-            fileNameSect.appendChild(fileIcon);
-
-            /**file */
-            const file = document.createElement('span');
-            file.setAttribute('class', 'fn');
-            file.innerText = _files.name;
-            //append
-            fileNameSect.appendChild(file);
-
-            fileNames.push(_files.name);
-            const fileTimeCnt = document.createElement('span');
-            fileTimeCnt.setAttribute('class', 'time-4');
-
-            const fileTime = document.createElement('span');
-            fileTime.innerText = _files.time;
-            fileTimeCnt.appendChild(fileTime);
-            fileCnt.appendChild(fileTimeCnt);
-
-            /**Download btn */
-            const downloadBtn = document.createElement('button');
-            downloadBtn.setAttribute('class', 'download_btn-4');
-
-            const downloadIc = document.createElement('img');
-            downloadIc.setAttribute('class', 'download_ic');
-            downloadIc.setAttribute('src', 'https://img.icons8.com/?size=100&id=83159&format=png&color=FFFFFF');
-            downloadBtn.appendChild(downloadIc);
-            /**Download text */
-            const downloadText = document.createElement('span');
-            downloadText.innerText = 'Download';
-            downloadBtn.appendChild(downloadText);
-            /**Append */
-            fileTimeCnt.appendChild(downloadBtn);
+    // Initial render
+    renderFilesComponent(f, parent, sortDirection);
 
 
-            new_files.appendChild(fileCnt);
-
-        });
-
-        parent.appendChild(new_files);
-    }
-
+    /**When the mobile search input is focused */
     searchInp.addEventListener("focus", () => {
         menuBg.style.backgroundColor = "transparent";
         menuBg.style.pointerEvents = "none";
         menuCard.style.height = "4.3rem";
         menuCard.style.marginTop = "1rem";
     });
+
+    /**When the mobile search input is blur */
     searchInp.addEventListener("blur", () => {
 
         menuBg.style.backgroundColor = "";
@@ -159,12 +181,14 @@ export default function fileclone() {
 
     });
 
+
+    /**Search functionality */
     function searchfnc(inpt) {
         Array.from(parent.children).forEach(_child => {
 
             Array.from(_child.querySelectorAll('.fn')).forEach((_fname, idx) => {
-                if (_fname.innerText.includes(inpt.value)) {
-    
+                if (_fname.innerText.includes(inpt.value.toLowerCase())) {
+
                     _child.children[idx + 1].style.display = "flex"
                 } else {
                     _child.children[idx + 1].style.display = "none"
@@ -183,7 +207,7 @@ export default function fileclone() {
         searchfnc(searchInp2);
     });
 
-    
+
     let isSearchInp = false;
     searchInp2Btn.addEventListener("click", () => {
         if (!isSearchInp) {
@@ -201,5 +225,5 @@ export default function fileclone() {
         }
     });
 
-    
+
 }

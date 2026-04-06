@@ -2,6 +2,7 @@
     --bg: rgb(235, 236, 236);
     --button-bg-cl: white;
     --comp-a-bg-cl: white;
+    --drop-btns-cl: black;
 }
 
 
@@ -12,6 +13,8 @@
     --comp-a-bg-cl: rgb(0, 0, 0);
     color: rgb(208, 205, 205);
     --dark-thm-cl: white;
+    --drop-btns-cl: rgb(220, 220, 220);
+
 }
 
 .dash_board.dark .side_bar-3 {
@@ -21,6 +24,7 @@
 .dash_board.dark li {
     color: var(--dark-thm-cl);
 }
+
 .dash_board.dark .active {
     background-color: #0e0d0dd3;
 }
@@ -31,6 +35,7 @@
     backdrop-filter: blur(5px);
     box-shadow: 0px 0px .3rem gray;
 }
+
 * {
     box-sizing: border-box;
     font-family: sans-serif;
@@ -390,10 +395,33 @@ body {
     gap: .4rem;
 }
 
+.border_bottom-3 {
+    padding-bottom: .4rem;
+    border-bottom: .5px dashed rgba(128, 128, 128, 0.324);
+}
+
 .std_info-3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.std_info-3 .drop_panel_btcn-3 {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    cursor: pointer;
+    color: var(--drop-btns-cl);
+    font-weight: 300;
+}
+
+.std_info-3 .drop_panel_btcn-3 .drop_down_ic-3 {
+    width: 20px;
+    height: 20px;
+    padding: .5rem .5rem;
+    box-shadow: 0px 0px .1rem rgb(105, 105, 105);
+    box-sizing: content-box;
+    border-radius: .5rem;
 }
 
 .color_tg_inp-3 {
@@ -404,6 +432,7 @@ body {
     align-items: center;
     background-color: whitesmoke;
     border-radius: 4rem;
+    cursor: pointer;
 }
 
 .color_tg_inp-3 .cl_tg_ctr-3 {
@@ -421,8 +450,6 @@ body {
     max-height: 0;
     overflow-y: hidden;
     transition: max-height .4s ease;
-
-
 }
 
 .batch_list-3 ul {
@@ -442,10 +469,15 @@ body {
     justify-content: space-between;
     padding: 1rem 1rem;
     border-radius: 1rem;
+    cursor: pointer;
 
 }
 
 .batch_list-3 ul li.active {
+    background: rgba(128, 128, 128, 0.411);
+}
+
+.batch_list-3 ul li:hover {
     background: rgba(128, 128, 128, 0.411);
 }
 
