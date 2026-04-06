@@ -2,6 +2,7 @@ import App from "./main.js";
 import render from '../../src/modules/component/render'
 import fileclone from "./scripts/script.js";
 import Script2 from './scripts/script2.js';
+import interSect from "./scripts/script3.js";
 
 // Wait for DOM to be fully loaded before rendering
 if (document.readyState === 'loading') {
@@ -22,3 +23,4 @@ if (document.readyState === 'loading') {
 
 fileclone();
 Script2();
+interSect();
