@@ -80,7 +80,7 @@ export default function interSect() {
     const tg_btn = document.getElementById('theme_tg_btn');
     const tg_btn_mobile = document.getElementById('tg_btn_mobile')
     const tgCtr = document.getElementById('tg_ctr');
-
+    const hambugerBtn = document.getElementById("hambuger_menu");
     tg_btn.addEventListener("click", () => {
         toggleTheme(tg_btn, true, null);
     });
