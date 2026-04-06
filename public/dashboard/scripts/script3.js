@@ -1,3 +1,25 @@
+let isDark = false;
+
+
+/**Toggle btn */
+function toggleTheme(tg_btn, ic) {
+    if (!isDark) {
+        document.body.classList.add("dark");
+        isDark = true;
+        if (ic) {
+            tg_btn.src = "https://img.icons8.com/?size=100&id=648&format=png&color=ffffff";
+        }
+
+    } else {
+        document.body.classList.remove("dark");
+        isDark = false;
+        if (ic) {
+            tg_btn.src = "https://img.icons8.com/?size=100&id=45474&format=png&color=7a7a7a";
+        }
+    }
+}
+
+
 export default function interSect() {
     const curTime = document.getElementById("currentSecTime");
     const rootCnt = document.getElementById("time_root_cnt");
@@ -24,20 +46,17 @@ export default function interSect() {
         };
     })
 
-    const tg_btn = document.getElementById('theme_tg_btn');
 
-    let isDark = false;
+
+    const tg_btn = document.getElementById('theme_tg_btn');
+    const tg_btn_mobile = document.getElementById('tg_btn_mobile')
+
 
     tg_btn.addEventListener("click", () => {
-        if (!isDark) {
-            document.body.classList.add("dark");
-            isDark = true;
-            tg_btn.src = "https://img.icons8.com/?size=100&id=648&format=png&color=ffffff";
+        toggleTheme(tg_btn, true);
+    });
 
-        } else {
-            document.body.classList.remove("dark");
-            isDark = false;
-            tg_btn.src = "https://img.icons8.com/?size=100&id=45474&format=png&color=7a7a7a";
-        }
+    tg_btn_mobile.addEventListener("click", () => {
+        toggleTheme(tg_btn_mobile, false)
     })
 }
