@@ -144,8 +144,8 @@
 }
 
 .last_file_view_ic-5 {
-    width: 50%;
-    height: 50%;
+    width: 10rem;
+    height: 10rem;
     padding: 1rem 1rem;
     border-radius: 10rem;
     border: 10px solid rgb(10, 179, 165);
@@ -162,6 +162,7 @@
     color: gray;
     width: 100%;
 }
+
 .nme-5 {
     display: flex;
     align-items: center;
@@ -198,18 +199,19 @@
     align-items: center;
 
     color: gray;
-    padding: 0.5rem 0;
-    
+    padding: 0.5rem .5rem;
+
 }
-.top_stat_cnt-5 h3{
+
+.top_stat_cnt-5 h3 {
     margin: 1rem;
 }
 
 .bar_chat-5 {
     display: grid;
-    grid-template-columns: 60px 1fr;   
+    grid-template-columns: 60px 1fr;
     flex: 1;
-    height: 20rem;                  
+    height: 20rem;
     position: relative;
 }
 
@@ -247,7 +249,9 @@
     gap: 8px;
     font-size: 0.9rem;
     color: #666;
+
 }
+
 
 .g_lines-5 {
     flex: 1;
@@ -258,23 +262,23 @@
 /* === BAR CONTAINER - This is where your bars will live === */
 .bar_sec_cnt-5 {
     position: absolute;
-    width: 90%;                 
+    width: 90%;
     height: 70%;
-    pointer-events: none;        
+    pointer-events: none;
     z-index: 2;
-    bottom: 9%; 
+    bottom: 9%;
     right: 0;
     display: flex;
     gap: 2rem;
     justify-content: space-evenly;
-    overflow: auto; 
-    
-   
+    overflow: auto;
+
+
 }
 
 /* Example bars inside .bar_sec_cnt-5 (you'll add these dynamically or manually) */
 .bar {
-   
+
     width: 60px;
     align-self: flex-end;
     background: linear-gradient(to top, #3b82f6, #60a5fa);
@@ -292,14 +296,15 @@
     width: auto;
     height: auto;
     box-sizing: content-box;
-   
+
 }
 
+/*recent file*/
 .recent_file_section-5 {
     width: 100%;
-   
+
     display: flex;
-   
+
 }
 
 .recent_file_cnt-5 {
@@ -321,6 +326,7 @@
     padding: 1rem 0rem;
     color: gray;
 }
+
 .rec_file_sec-5 {
     width: 100%;
     display: flex;
@@ -328,6 +334,7 @@
     gap: 1rem;
     align-items: center;
 }
+
 .rec_file_cmp-5 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -336,6 +343,7 @@
     padding: 1rem .5rem;
     border-top: 1px solid rgba(128, 128, 128, 0.434);
 }
+
 .rec_file_cmp-5:last-child {
     border-bottom: none;
 
@@ -346,9 +354,41 @@
     display: flex;
     align-items: center;
 
-};
+}
+
+;
 
 .file_name_cnt-5 .rec_ic {
     width: 10px;
     height: 10px;
+}
+
+@media (max-width: 920px) {
+    .bar {
+        width: 40Px;
+    }
+
+    .bar_cn {
+        flex: 0 0 auto;
+        margin-inline-start: 4rem;
+    }
+
+    .bar_sec_cnt-5 {
+        border: 1px solid red;
+        justify-content: unset;
+        overflow-x: scroll;
+        pointer-events: all;
+        clip-path: inset(0 0 0 6%);
+        
+    }
+
+}
+
+@media (max-width: 780px) {
+.recent_file_section-5 {
+    display: none;
+}
+.stat_cnt-5 {
+    grid-column: span 2;
+} 
 }
