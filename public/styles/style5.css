@@ -336,11 +336,16 @@
 
 .rec_file_cmp-5 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     justify-items: flex-end;
     width: 100%;
     padding: 1rem .5rem;
     border-top: 1px solid rgba(128, 128, 128, 0.434);
+}
+.views-5 {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
 }
 
 .rec_file_cmp-5:last-child {
@@ -461,4 +466,13 @@
         clip-path: inset(0 0 0 7%);
         border: 1px solid red;
     }
+}
+
+.loading-5 {
+    width: 70px;
+    height: 70px;
+    align-self: center;
+    position: absolute;
+    inset: 0;
+    margin-inline-start: 40%;
 }

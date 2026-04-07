@@ -313,9 +313,8 @@ body {
 }
 
 .ic_2-3 {
-    padding: .2rem .2rem;
-    box-shadow: 0px 0px .2rem gray;
-    border-radius: 1rem;
+    padding: .5rem .8rem;
+    box-sizing: content-box;
 }
 
 .search_inp {
@@ -478,6 +477,16 @@ body {
 
 .batch_list-3 ul li:hover {
     background: rgba(128, 128, 128, 0.411);
+}
+
+.callender-3 {
+ 
+    padding: .5rem .5rem;
+    background: rgb(255, 255, 255);
+    display: flex;
+    gap: .5rem;
+   
+
 }
 
 

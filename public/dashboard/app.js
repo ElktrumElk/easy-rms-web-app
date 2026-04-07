@@ -3,6 +3,8 @@ import render from '/modules/component/render.js'
 import fileclone from "./scripts/script.js";
 import Script2 from './scripts/script2.js';
 import interSect from "./scripts/script3.js";
+import renderGraph from "./scripts/graph.js";
+import { expand } from "./scripts/expand.js";
 
 // Wait for DOM to be fully loaded before rendering
 if (document.readyState === 'loading') {
@@ -25,3 +27,5 @@ if (document.readyState === 'loading') {
 Script2();
 interSect();
 */
+renderGraph();
+expand();
